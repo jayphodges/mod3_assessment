@@ -24,11 +24,11 @@ describe "Items API" do
     item = Item.create(name: "Item1", description: "Description1", image_url: "http://via.placeholder.com/350x350")
 
     get "api/v1/items/#{item.id}"
-    item = JSON.parse(result.body)
+    reply = JSON.parse(response.body)
 
-    expect(response).to be_success
-    expect(item.count).to eq(1)
-    expect(item.name).to eq(item)
+    expect(response.status).to eq(200)
+    expect(reply["name"]).to eq(item.name)
+    expect(reply["description"]).to eq(item.description)
   end
   #
   # # When I send a DELETE request to /api/v1/items/1 I receive a 204 JSON response
@@ -42,15 +42,16 @@ describe "Items API" do
   #   expect(response.status).to eq(204)
   # end
   #
-  # # When I send a POST request to /api/v1/items with a name, description, and image_url
-  # # I receive a 201 JSON response if the record is successfully created And I receive a
-  # # JSON response containing the id, name, description, and image_url but not the created_at or updated_at
-  # it "responds to a POST request with a 201 status and returns the item" do
-  #   item = create(:item)
-  #
-  #   post "api/v1/items/#{item.id}"
-  #   reply = JSON.parse(result.body)
-  #
-  #   expect(response.status).to eq(204)
-  # end
+  # When I send a POST request to /api/v1/items with a name, description, and image_url
+  # I receive a 201 JSON response if the record is successfully created And I receive a
+  # JSON response containing the id, name, description, and image_url but not the created_at or updated_at
+  it "responds to a POST request with a 201 status and returns the item" do
+    params = {:item => {name: "Item1", description: "Description1", image_url: "http://via.placeholder.com/350x350"}}
+
+    # post "api/v1/items", params
+
+    reply = JSON.parse(result.body)
+    binding.pry
+    expect(response.status).to eq(204)
+  end
 end
