@@ -16,6 +16,7 @@ describe "Items API" do
 
     expect(response.status).to eq(200)
     expect(items.count).to eq(3)
+    expect(items.first.keys).to eq(["id", "name", "description", "image_url"])
   end
 
   # When I send a GET request to /api/v1/items/1 I receive a 200 JSON response containing
@@ -29,6 +30,7 @@ describe "Items API" do
     expect(response.status).to eq(200)
     expect(reply["name"]).to eq(item.name)
     expect(reply["description"]).to eq(item.description)
+    expect(reply.keys).to eq(["id", "name", "description", "image_url"])
   end
 
   # When I send a DELETE request to /api/v1/items/1 I receive a 204 JSON response
