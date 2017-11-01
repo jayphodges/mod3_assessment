@@ -1,1 +1,12 @@
 <h1>Searchy Search Sercher</h1>
+
+<h3><%= @stores.count %> Total Stores</h3>
+<% @stores.each do |store| %>
+<ul class="store">
+  <li class=name> <%= store.longname %> </li>
+  <li class=city> <%= store.city %> </li>
+  <li class=distance> <%= store.distance %> </li>
+  <li class=phone_number> <%= store.phone_number %> </li>
+  <li class=store_type> <%= store.store_type %> </li>
+</ul>
+<% end %>
