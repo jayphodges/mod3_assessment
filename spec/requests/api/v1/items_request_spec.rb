@@ -13,7 +13,7 @@ describe "Items API" do
 
     get "/api/v1/items"
     items = JSON.parse(response.body)
-
+    binding.pry
     expect(response.status).to eq(200)
     expect(items.count).to eq(3)
   end
